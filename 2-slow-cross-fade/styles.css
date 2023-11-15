@@ -1,0 +1,7 @@
+::view-transition-group(root) {
+  animation-duration: 2s;
+}
+/* 差别多效果 */
+/* ::view-transition-new(*) {
+  animation-duration: 2s;
+} */

@@ -1,0 +1,37 @@
+.main-header {
+  view-transition-name: main-header;
+  contain: layout;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-30px); }
+}
+/* root 伪类选择器 代表根元素 这里可以理解为html节点 */
+/* 优先级上 html < :root < html:root */
+
+/* 
+由于.main-header被分配了view-transition-name 
+所以::view-transition不会对.main-header生效
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/::view-transition-new#root
+*/
+::view-transition-old(root) {
+  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}

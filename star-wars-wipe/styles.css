@@ -1,0 +1,15 @@
+@keyframes wipe-move {
+  to {
+    -webkit-mask-position: 100%;
+  }
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  -webkit-mask-image: linear-gradient(to right, transparent 49%, #000 51%);
+  -webkit-mask-size: 200%;
+  animation: 100.5s linear both wipe-move;
+}
+
+::view-transition-old(root) {
+  -webkit-mask-image: linear-gradient(to right, #000 51%, transparent 49%);
+}

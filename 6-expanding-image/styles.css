@@ -1,0 +1,64 @@
+.main-header {
+  view-transition-name: main-header;
+  contain: layout;
+}
+
+.main-header-text {
+  view-transition-name: main-header-text;
+  contain: layout;
+  width: fit-content;
+}
+
+.banner-img img {
+  view-transition-name: banner-img;
+  contain: layout;
+}
+
+.gallery img {
+  contain: layout;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+  to { transform: translateX(-30px); }
+}
+
+::view-transition-old(root) {
+  animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+::view-transition-old(banner-img),
+::view-transition-new(banner-img) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* 
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/::view-transition-image-pair
+表示一个视图过渡的旧视图状态和新视图状态的容器——即过渡前和过渡后的状态。
+*/
+::view-transition-image-pair(banner-img) {
+  /* 
+  翻译：隔离
+  CSS 属性定义该元素是否必须创建一个新的层叠上下文
+  https://www.zhangxinxu.com/wordpress/2016/01/understand-css3-isolation-isolate/
+  */
+  /* isolation: none; */
+}
